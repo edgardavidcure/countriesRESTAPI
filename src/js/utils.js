@@ -1,3 +1,5 @@
+const BaseURL = import.meta.env.VITE_SERVER_URL;
+
 export function loadHeaderFooter() {
     const headerTemplateFn = loadTemplate("/partials/header.html");
     const footerTemplateFn = loadTemplate("/partials/footer.html");
@@ -133,5 +135,11 @@ export function changeViewPreference(){
 
 
     }
+}
+
+export async function getCountriesData(){
+  const data = await fetch(BaseURL)
+  const dataToJson = await data.json()
+  return dataToJson
 }
 

@@ -184,11 +184,15 @@ main{
     width: 100%;
     display: flex;
     gap: 10%;
+    justify-content: space-evenly;
 }
 
 .countryPage img{
-    width: 60%;
-    max-width: 650px;
+    width: 40vw;
+    max-width: 550px;
+    height: 30vw;
+    max-height: 400px;
+    align-self: center;
 }
 
 .countryPage > div{
@@ -198,6 +202,7 @@ main{
     gap: 3rem;
     align-items: flex-start;
     justify-content: center;
+    height: 50vh;
 }
 .countryPage > div h1{
     width: auto;
@@ -206,12 +211,17 @@ main{
     justify-self: center;
 }
 .countryPage > div .countryDetails{
-    height: 150px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
+    column-count: 2;
+    column-width: 20%;
     flex-wrap: wrap;
     width: 100%;
-    column-gap: 5rem;
+    column-gap: 4vw;
+}
+.countryPage > div .countryDetails p{
+    overflow-wrap: break-word;
 }
 .countryMainPage{
     height: 70vh;
@@ -237,3 +247,83 @@ main{
     padding: 0.1rem 1.5rem;
     color: var(--text-color);
 }
+
+.search {
+    display: flex;
+    width: 20%;
+    align-items: center;
+  }
+  
+  .search__form {
+    position: relative;
+    width: 100%;
+  }
+  
+  .search__label {
+    display: none;
+  }
+  
+  .search_input {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    font-size: 1rem;
+    font-family: "nunito sans";
+    border-radius: 10px;
+    background-color: var(--background-color);
+    border: 1px solid var(--elements-background);
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+    color: var(--text-color);
+
+  }
+  
+  .search_results {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    z-index: 1;
+    list-style: none;
+    background-color: var(--elements-background);
+    font-family: "nunito sans";
+    color: var(--text-color);
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 0px 0px 10px 10px;
+    overflow: hidden;
+  }
+  
+  .search__result {
+    font-size: 1.2rem;
+    border-bottom: 5px solid var(--background-color);
+    overflow: hidden;
+
+  }
+  
+  .search__result a {
+    padding: 10px;
+    color: var(--text-color);
+    text-decoration: none;
+    display: block;
+  }
+  .search__result a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .noFound{
+    padding: 10px 5px;
+    font-style: italic;
+  }
+
+  ::placeholder { 
+    color: var(--text-color);
+    opacity: 1; 
+  }
+  
+  :-ms-input-placeholder { 
+    color: var(--text-color);
+  }
+  
+  ::-ms-input-placeholder { 
+    color: var(--text-color);
+  }

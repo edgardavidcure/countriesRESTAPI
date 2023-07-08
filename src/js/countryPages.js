@@ -43,10 +43,10 @@ function getNativeName(){
 
 function getCurrencies(){
     const countryCurrency = countryData.currencies
-    if (countryCurrency){
+    if (countryCurrency){        
         const currencyKey = Object.keys(countryCurrency)
-        const currencyName = countryCurrency[currencyKey].name
-        return currencyName
+        const currencyNames = currencyKey.map(key => countryCurrency[key].name);
+        return currencyNames.join(", ")
     } else{
         return "N/A"
     }

@@ -3,16 +3,15 @@ import { getCountryByCode } from "./externalServices.mjs";
 
 loadHeaderFooter();
 const countryCode = getParam("countryCode")
-console.log(countryData)
 
 async function renderCountryPage(){
     const countryData = await getCountryByCode(countryCode)
 
     const mainElement = document.querySelector(".countryPage");
-    const nativeName = getNativeName();
-    const currencies = getCurrencies();
-    const languages = getLanguages();
-    const domains = getTopLevelDomain();
+    const nativeName = await getNativeName();
+    const currencies = await getCurrencies();
+    const languages = await getLanguages();
+    const domains = await getTopLevelDomain();
     const htmlElements = countryPageTemplate(countryData, nativeName, currencies, languages, domains)
     mainElement.innerHTML = htmlElements
     createCountryBorders()

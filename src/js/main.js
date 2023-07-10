@@ -19,7 +19,7 @@ function countryCardTemplate(item, index){
                     <div class="countryDetails" id="">
                         <p><span class="bold" id="">Population:</span> ${item.population}</p>
                         <p><span class="bold" id="">Region:</span> ${item.region}</p>
-                        <p><span class="bold" id="">Capital:</span> ${item.capital}</p>
+                        <p><span class="bold" id="">Capital:</span> ${item.capital || "N/A"}</p>
                     </div>
                     
                 </div>

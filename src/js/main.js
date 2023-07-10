@@ -1,5 +1,5 @@
-import {getCountriesData, getLocalStorage, loadHeaderFooter, setLocalStorage} from "../js/utils";
-
+import { getLocalStorage, loadHeaderFooter, setLocalStorage} from "./utils.mjs";
+import { getCountriesData } from "./externalServices.mjs";
 loadHeaderFooter()
 
 

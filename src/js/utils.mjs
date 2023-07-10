@@ -1,3 +1,4 @@
+import { getCountriesData } from "./externalServices.mjs";
 
 export function loadHeaderFooter() {
     const headerTemplateFn = loadTemplate("/partials/header.html");
@@ -6,7 +7,7 @@ export function loadHeaderFooter() {
     const footerElement = document.getElementById("main-footer");
     renderWithTemplate(headerTemplateFn, headerElement, checkViewPreference);
     renderWithTemplate(footerTemplateFn, footerElement);
-    
+    searchCountries()
 }
 export function qs(selector, parent = document) {
     return parent.querySelector(selector);
@@ -135,5 +136,54 @@ export function changeViewPreference(){
 
     }
 }
+
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = true
+) {
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  const htmlStrings = list.map((item) => templateFn(item));
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+export async function searchCountries(){
+
+    const countryList = await getCountriesData()
+    
+    const searchInputElement = document.querySelector(".search_input");
+    const searchResultElement = document.querySelector(".search_results");
+
+    function searchResultProductTemplate(product) {
+      return `<li class="search__result"><a href="/countryPages/index.html?countryCode=${product.cca3}">${product.name.common}</a></li>`;
+    }
+
+    searchInputElement.addEventListener("input", (e) => {
+      const filteredList = countryList.filter(
+        (product) =>
+          product.name.common.toLowerCase().includes(e.target.value.toLowerCase())
+      ).slice(0, 5);
+
+      if (filteredList.length > 0 && e.target.value) {
+        renderListWithTemplate(
+          searchResultProductTemplate,
+          searchResultElement,
+          filteredList
+        );
+      } else if (filteredList.length > 0 && !e.target.value) {
+        searchResultElement.innerHTML = "";
+      } else {
+        const messageTemplate = () =>
+          `<li class="search__result noFound">No product found</li>`;
+
+        renderWithTemplate(messageTemplate, searchResultElement);
+      }
+    });
+  };
+  
 
 

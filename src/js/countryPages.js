@@ -11,8 +11,8 @@ async function renderCountryPage(){
     const nativeName = getNativeName();
     const currencies = getCurrencies();
     const languages = getLanguages();
-
-    const htmlElements = countryPageTemplate(countryData, nativeName, currencies, languages)
+    const domains = getTopLevelDomain();
+    const htmlElements = countryPageTemplate(countryData, nativeName, currencies, languages, domains)
     mainElement.innerHTML = htmlElements
     createCountryBorders()
 
@@ -43,10 +43,10 @@ function getNativeName(){
 
 function getCurrencies(){
     const countryCurrency = countryData.currencies
-    if (countryCurrency){
+    if (countryCurrency){        
         const currencyKey = Object.keys(countryCurrency)
-        const currencyName = countryCurrency[currencyKey].name
-        return currencyName
+        const currencyNames = currencyKey.map(key => countryCurrency[key].name);
+        return currencyNames.join(", ")
     } else{
         return "N/A"
     }
@@ -66,9 +66,21 @@ function getLanguages(){
         return "N/A"
     }
     }
-    
+function getTopLevelDomain(){
+    const countryDomains = countryData.tld
+    let domains = []
+    if (countryDomains){
+        for (let domain in countryDomains){
+            domains.push(countryDomains[domain])
+        }
+        const stringifyDomain = domains.join(", ")
+        return stringifyDomain
+    } else{
+        return "N/A"
+    }
+}
 
-function countryPageTemplate(item, nativeName, currencies, languages){
+function countryPageTemplate(item, nativeName, currencies, languages, domains){
     return `
             <img src="${item.flags.png}" alt="${item.flags.alt}">
             <div>
@@ -79,7 +91,7 @@ function countryPageTemplate(item, nativeName, currencies, languages){
                     <p><span class="bold" id="">Region:</span> ${item.region}</p>
                     <p><span class="bold" id="">Sub Region:</span> ${item.subregion || "N/A"}</p>
                     <p><span class="bold" id="">Capital:</span> ${item.capital || "N/A"}</p>
-                    <p><span class="bold" id="">Top Level Domain:</span> ${item.tld[0]}</p>
+                    <p><span class="bold" id="">Top Level Domain:</span> ${domains || "N/A"}</p>
                     <p><span class="bold" id="">Currencies:</span> ${currencies}</p>
                     <p><span class="bold" id="">Languages:</span> ${languages}</p>
                 </div>

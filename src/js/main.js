@@ -62,7 +62,7 @@ filterContainer.addEventListener("click", function(event) {
 
 async function loadFilterOptions(typeOfJson) {
     try {
-      const response = await fetch(`../public/json/${typeOfJson}.json`);
+      const response = await fetch(`../json/${typeOfJson}.json`);
       const data = await response.json();
       const items = data[typeOfJson];
   
@@ -83,6 +83,8 @@ async function loadFilterOptions(typeOfJson) {
       console.error(error);
     }
   }
+
+  
   
   loadFilterOptions("regions");
   loadFilterOptions("currencies");

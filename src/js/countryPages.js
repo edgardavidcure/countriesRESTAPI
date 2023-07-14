@@ -32,7 +32,6 @@ async function getNativeName(){
     
             } else{
                 nativeName = countryData.name.official
-                console.log(nativeName)
                 return nativeName
     
             }
@@ -117,12 +116,12 @@ async function createCountryBorders(){
     const borders = countryData.borders
     const bordersParentElement = document.querySelector(".borders")
     if (borders){
-        borders.forEach(async countryCode => {
+        borders.forEach(async codeCountry => {
             let newLink = document.createElement("a")
-            newLink.setAttribute("href", `/countryPages/index.html?countryCode=${countryCode}`)
-            const country = await getCountryByCode(countryCode)
+            newLink.setAttribute("href", `/countryPages/index.html?countryCode=${codeCountry}`)
+            const country = await getCountryByCode(codeCountry)
             newLink.innerText = country.name.common
-            bordersParentElement.insertAdjacentElement("beforeend", newLink )
+            bordersParentElement.insertAdjacentElement("beforeend",newLink)
         });
     } else {
          bordersParentElement.style.display = "none"

@@ -99,7 +99,7 @@ footer{
 
 
 
-main{
+#countriesContainer{
     display: flex;
     flex-wrap: wrap;
     gap: 3rem;
@@ -327,3 +327,119 @@ main{
   ::-ms-input-placeholder { 
     color: var(--text-color);
   }
+
+
+  .filer-container{
+    color: var(--text-color);
+    font-family: "nunito sans";
+ 
+  }
+
+  .filters{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    padding-top: 2rem;
+    gap: 2rem;
+    position: relative;
+
+  }
+  .filters div span{
+    display: flex;
+    color: var(--text-color);
+    font-family: "nunito sans";
+    background-color: var(--elements-background);
+    padding: 1rem;
+    border-radius: 15px;
+    gap: 0.5rem;
+    align-items: center;
+    cursor: pointer;
+  }
+  .filters div{
+    width: fit-content;
+    position: relative;
+    max-height: fit-content;
+    width: fit-content;
+  }
+
+  .filters ul{
+    display: none;
+    background-color: var(--elements-background);
+    border-radius:0 0 15px 15px;
+  }
+
+  .filters .active-options{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    padding: 0.2rem 0;
+    text-align: left;
+    color: var(--text-color);
+    margin-top: -12px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 500px;
+    
+
+
+
+
+  }
+  .filters .active-options li{
+    list-style: none;
+    padding: 1rem;
+    font-family: "nunito sans";
+    border-bottom: 1px solid grey;
+    cursor: pointer;
+    color: var(--text-color);
+  }
+  .filters .active-options li:hover{
+    background-color: var(--background-color);
+    cursor: pointer;
+  }
+
+.filters .active-options li:last-child{
+    
+    border-bottom: initial;
+
+  }
+
+  /* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--background-color); 
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+  .filters .removeFilter{
+    visibility: hidden;
+  }
+  .filters .removeFilter span{
+    background-color: rgb(78, 78, 78);
+    font-weight: bold;
+    color: white
+  }
+  .filters .removeFilter span i{
+    font-size: 1.2rem;
+  }
+
+  #filterBy{
+    padding-top: 25px;
+    padding-left: 10%;
+    color: var(--text-color);
+  }
+  

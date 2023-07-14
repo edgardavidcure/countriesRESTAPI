@@ -1,6 +1,6 @@
 # countriesRESTAPI
 
-Users should be able to:
+Users should be able to :
 
 - See all countries from the API on the homepage
 - Search for a country using an `input` field

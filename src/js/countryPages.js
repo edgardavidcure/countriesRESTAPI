@@ -3,21 +3,24 @@ import { getCountryByCode } from "./externalServices.mjs";
 
 loadHeaderFooter();
 const countryCode = getParam("countryCode")
-const countryData = await getCountryByCode(countryCode)
 
 async function renderCountryPage(){
+    const countryData = await getCountryByCode(countryCode)
+
     const mainElement = document.querySelector(".countryPage");
-    const nativeName = getNativeName();
-    const currencies = getCurrencies();
-    const languages = getLanguages();
-    const domains = getTopLevelDomain();
+    const nativeName = await getNativeName();
+    const currencies = await getCurrencies();
+    const languages = await getLanguages();
+    const domains = await getTopLevelDomain();
     const htmlElements = countryPageTemplate(countryData, nativeName, currencies, languages, domains)
     mainElement.innerHTML = htmlElements
     createCountryBorders()
 
   }
 
-function getNativeName(){
+async function getNativeName(){
+    const countryData = await getCountryByCode(countryCode)
+
     const countryNativeName = countryData.name.nativeName
     const countryLanguage = countryData.languages
     let nativeName;
@@ -39,7 +42,9 @@ function getNativeName(){
     }
 }
 
-function getCurrencies(){
+async function getCurrencies(){
+    const countryData = await getCountryByCode(countryCode)
+
     const countryCurrency = countryData.currencies
     if (countryCurrency){        
         const currencyKey = Object.keys(countryCurrency)
@@ -51,7 +56,9 @@ function getCurrencies(){
     
 }
 
-function getLanguages(){
+async function getLanguages(){
+    const countryData = await getCountryByCode(countryCode)
+
     const countryLanguages = countryData.languages
     let languages = []
     if (countryLanguages){
@@ -64,7 +71,10 @@ function getLanguages(){
         return "N/A"
     }
     }
-function getTopLevelDomain(){
+
+async function getTopLevelDomain(){
+    const countryData = await getCountryByCode(countryCode)
+
     const countryDomains = countryData.tld
     let domains = []
     if (countryDomains){
@@ -100,7 +110,9 @@ function countryPageTemplate(item, nativeName, currencies, languages, domains){
         `
 }
 
- function createCountryBorders(){
+async function createCountryBorders(){
+    const countryData = await getCountryByCode(countryCode)
+
     const borders = countryData.borders
     const bordersParentElement = document.querySelector(".borders")
     if (borders){

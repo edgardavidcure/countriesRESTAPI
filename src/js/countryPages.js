@@ -4,7 +4,6 @@ import { getCountryByCode } from "./externalServices.mjs";
 loadHeaderFooter();
 const countryCode = getParam("countryCode")
 const countryData = await getCountryByCode(countryCode)
-console.log(countryData)
 
 async function renderCountryPage(){
     const mainElement = document.querySelector(".countryPage");
@@ -30,7 +29,6 @@ function getNativeName(){
     
             } else{
                 nativeName = countryData.name.official
-                console.log(nativeName)
                 return nativeName
     
             }
@@ -106,12 +104,12 @@ function countryPageTemplate(item, nativeName, currencies, languages, domains){
     const borders = countryData.borders
     const bordersParentElement = document.querySelector(".borders")
     if (borders){
-        borders.forEach(async countryCode => {
+        borders.forEach(async codeCountry => {
             let newLink = document.createElement("a")
-            newLink.setAttribute("href", `/countryPages/index.html?countryCode=${countryCode}`)
-            const country = await getCountryByCode(countryCode)
+            newLink.setAttribute("href", `/countryPages/index.html?countryCode=${codeCountry}`)
+            const country = await getCountryByCode(codeCountry)
             newLink.innerText = country.name.common
-            bordersParentElement.insertAdjacentElement("beforeend", newLink )
+            bordersParentElement.insertAdjacentElement("beforeend",newLink)
         });
     } else {
          bordersParentElement.style.display = "none"

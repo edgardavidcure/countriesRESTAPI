@@ -92,9 +92,9 @@ function setTheme(){
     let theme = themeColor[viewPreference];
     // root.style.setProperty('--transition-property', 'background-color');
     // root.style.setProperty('--transition-duration', '1s');
-    root.style.setProperty('--text-color', theme.textColor);
-    root.style.setProperty('--elements-background', theme.elementsBackground);
-    root.style.setProperty('--background-color', theme.backgroundColor);
+    root.style.setProperty("--text-color", theme.textColor);
+    root.style.setProperty("--elements-background", theme.elementsBackground);
+    root.style.setProperty("--background-color", theme.backgroundColor);
     
 }
 
@@ -106,9 +106,7 @@ export function checkViewPreference(){
         viewPreference = getLocalStorage("view-mode")
     }
     setTheme()
-    
-    console.log(viewPreference)
-    setClick("#view-mode", changeViewPreference)
+        setClick("#view-mode", changeViewPreference)
 }
 
 
@@ -178,12 +176,14 @@ export async function searchCountries(){
         searchResultElement.innerHTML = "";
       } else {
         const messageTemplate = () =>
-          `<li class="search__result noFound">No product found</li>`;
+          "<li class=\"search__result noFound\">No product found</li>";
 
         renderWithTemplate(messageTemplate, searchResultElement);
       }
     });
-  };
+  }
+
+
   
 
 

@@ -7,7 +7,7 @@ export function loadHeaderFooter() {
     const footerElement = document.getElementById("main-footer");
     renderWithTemplate(headerTemplateFn, headerElement, checkViewPreference);
     renderWithTemplate(footerTemplateFn, footerElement);
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener("DOMContentLoaded", function() {
       
      searchCountries()
 
@@ -186,6 +186,22 @@ export async function searchCountries(){
       }
     });
   }
+
+export function manageTravelList(country) {
+  let travelList = getLocalStorage("t-list") || []; 
+
+  const countryIndex = travelList.findIndex(item => item.name.common === country.name.common);
+
+  if (countryIndex !== -1) {
+    travelList.splice(countryIndex, 1); 
+  } else {
+    travelList.push(country); 
+  }
+
+  setLocalStorage("t-list", travelList);
+}
+
+
 
 
   

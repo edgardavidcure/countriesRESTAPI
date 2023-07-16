@@ -18,6 +18,7 @@ h1,h2,h3,h4,h5,h6{
     font-family: "nunito sans";
     font-weight: 800;
     margin: unset;
+    color: var(--text-color);
 }
 
 a h5, footer span{
@@ -114,7 +115,7 @@ footer{
 
 .card{
     width: 350px;
-    height: 350px;
+    /* height: 350px; */
     background-color: var(--elements-background);
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     padding-bottom: 2rem;
@@ -452,5 +453,26 @@ footer{
     padding-top: 25px;
     padding-left: 10%;
     color: var(--text-color);
+  }
+
+  .travelTitle{
+    padding-top: 25px;
+    text-align: center;
+  }
+
+  #goToTravelList{
+    display: flex;
+    flex-direction: row;
+    color: var(--text-color);
+    align-items: center;
+    gap:10px;
+    font-family: "nunito sans";
+    font-weight: 600;
+    background-color: var(--background-color);
+    padding: 10px;
+    border-radius: 10px;
+  }
+  #goToTravelList:hover{
+    background-color: var(--elements-background);
   }
   

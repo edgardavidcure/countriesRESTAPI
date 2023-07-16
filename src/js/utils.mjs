@@ -7,7 +7,11 @@ export function loadHeaderFooter() {
     const footerElement = document.getElementById("main-footer");
     renderWithTemplate(headerTemplateFn, headerElement, checkViewPreference);
     renderWithTemplate(footerTemplateFn, footerElement);
-    searchCountries()
+    document.addEventListener('DOMContentLoaded', function() {
+      
+     searchCountries()
+
+    });
 }
 export function qs(selector, parent = document) {
     return parent.querySelector(selector);
@@ -159,7 +163,7 @@ export async function searchCountries(){
     function searchResultProductTemplate(product) {
       return `<li class="search__result"><a href="/countryPages/index.html?countryCode=${product.cca3}">${product.name.common}</a></li>`;
     }
-
+    
     searchInputElement.addEventListener("input", (e) => {
       const filteredList = countryList.filter(
         (product) =>
@@ -176,7 +180,7 @@ export async function searchCountries(){
         searchResultElement.innerHTML = "";
       } else {
         const messageTemplate = () =>
-          "<li class=\"search__result noFound\">No product found</li>";
+          "<li class=\"search__result noFound\">No Country Found</li>";
 
         renderWithTemplate(messageTemplate, searchResultElement);
       }

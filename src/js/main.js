@@ -35,21 +35,29 @@ function countryCardTemplate(item, index){
 
 // Get the parent container
 const filterContainer = document.getElementById("filterContainer");
-
-// Add a click event listener to the parent container
+const optionsElements = document.querySelectorAll("#filterContainer ul");
 filterContainer.addEventListener("click", function(event) {
   const target = event.target;
   
-  // Check if the clicked element is a span inside a div
   if (target.tagName === "SPAN" && target.parentNode.tagName === "DIV") {
     const optionsElement = target.parentNode.querySelector("ul");
     optionsElement.classList.toggle("active-options");
   }
 });
 
+window.addEventListener("click", function(event) {
+    const isClickedInsideContainer = filterContainer.contains(event.target);
+    if (!isClickedInsideContainer) {
+      optionsElements.forEach(function(optionsElement) {
+        optionsElement.classList.remove("active-options");
+      });
+    }
+  });
+
+
 async function loadFilterOptions(typeOfJson) {
     try {
-      const response = await fetch(`../public/json/${typeOfJson}.json`);
+      const response = await fetch(`../json/${typeOfJson}.json`);
       const data = await response.json();
       const items = data[typeOfJson];
   
@@ -57,9 +65,18 @@ async function loadFilterOptions(typeOfJson) {
       items.forEach(item => {
         const li = document.createElement("li");
         li.textContent = item.name;
+        if (typeOfJson == "currencies"){
+            console.log(li)
+            li.dataset.myData = item.code;
+        }
         optionsList.appendChild(li);
         li.addEventListener("click",function(e){
-            getDataFiltered(e.target.innerText, typeOfJson);
+            console.log(e)
+            if (typeOfJson == "currencies"){
+                getDataFiltered(e.target.dataset.myData, typeOfJson)
+            }else{
+                getDataFiltered(e.target.innerText, typeOfJson);
+            }
             document.getElementById("filterBy").innerHTML = `${typeOfJson} : ${e.target.innerText}`.toUpperCase()
             removeButton.style.visibility = "visible";
             optionsList.classList.toggle("active-options");
@@ -69,6 +86,8 @@ async function loadFilterOptions(typeOfJson) {
       console.error(error);
     }
   }
+
+
   
   loadFilterOptions("regions");
   loadFilterOptions("currencies");

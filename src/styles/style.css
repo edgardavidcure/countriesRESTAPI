@@ -109,7 +109,7 @@ footer{
 
 .card{
     width: 350px;
-    height: 350px;
+    /* height: 350px; */
     background-color: var(--elements-background);
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     padding-bottom: 2rem;

@@ -183,6 +183,22 @@ export async function searchCountries(){
     });
   }
 
+export function manageTravelList(country) {
+  let travelList = getLocalStorage("t-list") || []; 
+
+  const countryIndex = travelList.findIndex(item => item.name === country.name);
+
+  if (countryIndex !== -1) {
+    travelList.splice(countryIndex, 1); 
+  } else {
+    travelList.push(country); 
+  }
+
+  setLocalStorage("t-list", travelList);
+}
+
+
+
 
   
 

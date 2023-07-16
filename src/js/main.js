@@ -2,15 +2,14 @@ import { loadHeaderFooter} from "./utils.mjs";
 import { getCountriesData, getCountryByFilter } from "./externalServices.mjs";
 loadHeaderFooter()
 
-const removeButton = document.querySelector(".removeFilter")
-async function renderContryCard(filteredData){
+const removeButton = document.querySelector(".removeFilter") 
+export async function renderContryCard(filteredData){
     let countriesData = []
     if(filteredData){
         countriesData = filteredData;
     }else{
         countriesData = await getCountriesData();
     }
-    console.log(countriesData)
     const mainElement = document.querySelector("#countriesContainer")
     const htmlElements = countriesData.map((item, index) => countryCardTemplate(item, index))
     mainElement.innerHTML = htmlElements.join("")
@@ -26,25 +25,13 @@ function countryCardTemplate(item, index){
                         <p><span class="bold" id="">Population:</span> ${item.population}</p>
                         <p><span class="bold" id="">Region:</span> ${item.region}</p>
                         <p><span class="bold" id="">Capital:</span> ${item.capital || "N/A"}</p>
+                        <i class="fa-regular fa-heart" style="color: #ff2600;text-align: end;
+                        font-size: 25px;" id="${item.name}" title="Add country to my travel list"></i>
                     </div>
-                    
                 </div>
             </a>
         </div>`
 }
-
-
-
-// document.getElementById("regions").addEventListener("click", () =>{
-//     document.getElementById("regionsOptions").classList.toggle("active-options")
-// })
-// document.getElementById("currencies").addEventListener("click", () =>{
-//     document.getElementById("currenciesOptions").classList.toggle("active-options")
-// })
-// document.getElementById("languages").addEventListener("click", () =>{
-//     document.getElementById("languagesOptions").classList.toggle("active-options")
-// })
-
 
 // Get the parent container
 const filterContainer = document.getElementById("filterContainer");
@@ -72,7 +59,6 @@ async function loadFilterOptions(typeOfJson) {
         li.textContent = item.name;
         optionsList.appendChild(li);
         li.addEventListener("click",function(e){
-            console.log(e)
             getDataFiltered(e.target.innerText, typeOfJson);
             document.getElementById("filterBy").innerHTML = `${typeOfJson} : ${e.target.innerText}`.toUpperCase()
             removeButton.style.visibility = "visible";

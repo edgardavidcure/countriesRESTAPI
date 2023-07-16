@@ -12,12 +12,15 @@ export async function getCountryByCode(code){
     const [data] = await convertToJson(countryData)
     return data
 }
+export async function getCountryByName(name){
+    const countryData = await fetch(baseURL + `/name/${name}?fullText=true`)
+    const data = await convertToJson(countryData)
+    return data[0]
+}
 
 export async function getCountryByFilter(filter, value){
     const countryData = await fetch(baseURL + `/${filter}/${value}`)
     const data = await convertToJson(countryData)
-    console.log("DATA:", countryData)
-    console.log("DATA2:", data)
     return data
 }
 

@@ -1,10 +1,12 @@
-import { loadHeaderFooter} from "./utils.mjs";
-import { getCountriesData, getCountryByFilter } from "./externalServices.mjs";
+import { getLocalStorage, loadHeaderFooter, manageTravelList} from "./utils.mjs";
+import { getCountriesData, getCountryByFilter, getCountryByName } from "./externalServices.mjs";
 loadHeaderFooter()
 
 const removeButton = document.querySelector(".removeFilter") 
+
 export async function renderContryCard(filteredData){
     let countriesData = []
+    console.log(filteredData)
     if(filteredData){
         countriesData = filteredData;
     }else{
@@ -13,6 +15,7 @@ export async function renderContryCard(filteredData){
     const mainElement = document.querySelector("#countriesContainer")
     const htmlElements = countriesData.map((item, index) => countryCardTemplate(item, index))
     mainElement.innerHTML = htmlElements.join("")
+    updateIconColor()
   }
 
 function countryCardTemplate(item, index){
@@ -26,7 +29,7 @@ function countryCardTemplate(item, index){
                         <p><span class="bold" id="">Region:</span> ${item.region}</p>
                         <p><span class="bold" id="">Capital:</span> ${item.capital || "N/A"}</p>
                         <i class="fa-regular fa-heart" style="color: #ff2600;text-align: end;
-                        font-size: 25px;" id="${item.name}" title="Add country to my travel list"></i>
+                        font-size: 25px;" id="${item.name.common}" title="Add country to my travel list"></i>
                     </div>
                 </div>
             </a>
@@ -66,12 +69,10 @@ async function loadFilterOptions(typeOfJson) {
         const li = document.createElement("li");
         li.textContent = item.name;
         if (typeOfJson == "currencies"){
-            console.log(li)
             li.dataset.myData = item.code;
         }
         optionsList.appendChild(li);
         li.addEventListener("click",function(e){
-            console.log(e)
             if (typeOfJson == "currencies"){
                 getDataFiltered(e.target.dataset.myData, typeOfJson)
             }else{
@@ -120,4 +121,36 @@ async function loadFilterOptions(typeOfJson) {
       removeButton.style.visibility = "hidden"
   })
 
+  document.querySelector("#countriesContainer").addEventListener("click", async (e) =>{
+    if (e.target.classList.contains("fa-heart")){
+      e.preventDefault()
+      const id = e.target.id;
+      const countryData = await getCountryByName(id)
+      manageTravelList(countryData)
+      const heart = document.getElementById(`${id}`)
+      if(heart.classList.contains("fa-solid")){
+        heart.classList.remove("fa-solid")
+      }else{
+        heart.classList.add("fa-solid")
+      }
+    }
+  })
+
+  function updateIconColor() {
+    const travelListItems = getLocalStorage("t-list") || [];
+    const heartIcons = Array.from(document.getElementsByClassName("fa-heart"));
+    heartIcons.forEach((icon) => {
+      const id = icon.id;
+  
+      const isTravelListed = travelListItems.some((item) => item.name.common === id);
+  
+      if (isTravelListed) {
+        icon.classList.add("fa-solid");
+      } else {
+        icon.classList.remove("fa-solid");
+      }
+    });
+  }
+
   renderContryCard();
+ 

@@ -8,9 +8,15 @@
     --transition-duration: 0.6s;
 }
 
+body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--background-color);
+}
 
-
-
+footer{
+}
 *{
     margin: unset;
 }
@@ -62,6 +68,7 @@ header{
     padding: 1rem 2rem;
     transition: background-color var(--transition-duration), color var(--transition-duration);
     flex-wrap: wrap;
+    gap: 0.5rem;
 }
 .header div{
     margin-inline: 0.5rem;
@@ -73,6 +80,7 @@ header{
     align-items: center;
     cursor: pointer;
     padding: 1rem;
+    width: 100px;
 }
 main{
     background-color: var(--background-color);
@@ -85,6 +93,8 @@ footer{
     transition: background-color var(--transition-duration);
     position: relative;
     z-index: 1;
+    margin-top: auto;
+
 
 }
 .footer{
@@ -95,13 +105,16 @@ footer{
     gap: 25px;
     align-items: center;
     box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.1);
+
 }
 .footer a{
     color: var(--text-color);
     transition: color var(--transition-duration);
 
 }
-
+.footer h5{
+  font-size: 1.5rem;
+}
 
 
 
@@ -154,13 +167,14 @@ footer{
     gap: 0.5rem;
 }
 .countryDetails p{
-    font-family: "vt323";
+    font-family: "nunito sans";
     color: var(--text-color);
+    font-weight: 300;
 
     
 }
 .countryDetails span{
-    font-weight: bolder;
+    font-weight: 800;
     font-family: "nunito sans";
     color: var(--text-color);
 }
@@ -171,7 +185,6 @@ footer{
     background-color: var(--elements-background);
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
     padding: 0.5rem 2rem;
-    margin: 2rem;
 }
 .backBtn i{
     color: var(--text-color);
@@ -179,6 +192,7 @@ footer{
 .backBtn p {
     margin-left: 1rem;
     color: var(--text-color);
+    font-family: "nunito sans";
 }
 .countryMainPage{
     display: flex;
@@ -186,20 +200,27 @@ footer{
     align-items: center;
     justify-content: flex-start;
     padding: 2rem 4rem 5rem;
+    gap: 5vh;
 }
 .countryPage{
     width: 100%;
     display: flex;
     gap: 10%;
     justify-content: space-evenly;
+    flex-basis: 100px;
+    flex-wrap: wrap;
 }
 
 .countryPage img{
-    width: 40vw;
-    max-width: 550px;
-    height: 30vw;
-    max-height: 400px;
+    width: 100%;
+    max-width: 450px;
+    height: 40vw;
+    min-width: 200px;
+    max-height: 350px;
     align-self: center;
+    display: flex;
+    margin: 2rem 0;
+    
 }
 
 .countryPage > div{
@@ -209,7 +230,8 @@ footer{
     gap: 3rem;
     align-items: flex-start;
     justify-content: center;
-    height: 50vh;
+    flex-grow: 1;
+    max-width: 500px;
 }
 .countryPage > div h1{
     width: auto;
@@ -230,9 +252,6 @@ footer{
 .countryPage > div .countryDetails p{
     overflow-wrap: break-word;
 }
-.countryMainPage{
-    height: 70vh;
-}
 
 
 .countryMainPage .countryPage .borders{
@@ -250,15 +269,23 @@ footer{
     display: flex;
     align-items: center;
     background-color: var(--elements-background);
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
-    padding: 0.1rem 1.5rem;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 0.2rem 1.2rem;
     color: var(--text-color);
+    font-family: "nunito sans";
+    font-weight: 300;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
+.borders a:hover{
+  background-color: var(--background-color);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
 
+}
 .search {
     display: flex;
     min-width: 120px;
-    max-width: 160px;
+    max-width: 180px;
     align-items: center;
   }
   
@@ -471,6 +498,7 @@ footer{
     background-color: var(--background-color);
     padding: 10px;
     border-radius: 10px;
+    margin: 1rem 0;
   }
   #goToTravelList:hover{
     background-color: var(--elements-background);

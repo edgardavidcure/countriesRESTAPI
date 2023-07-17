@@ -1,4 +1,4 @@
-import { getLocalStorage, loadHeaderFooter, manageTravelList} from "./utils.mjs";
+import { getLocalStorage, loadHeaderFooter, manageTravelList, searchCountries} from "./utils.mjs";
 import { getCountriesData, getCountryByFilter, getCountryByName } from "./externalServices.mjs";
 loadHeaderFooter()
 
@@ -166,7 +166,6 @@ async function loadFilterOptions(typeOfJson) {
   scrollToTopBtn.addEventListener("click", scrollToTop);
 
   function handleIntersection(entries) {
-    const scrollToTopBtn = document.querySelector(".floating-button");
     if (entries[0].isIntersecting) {
       scrollToTopBtn.classList.add("hide");
       setTimeout(() => {
@@ -189,3 +188,9 @@ async function loadFilterOptions(typeOfJson) {
   });
 
   observer.observe(header);
+ 
+  document.addEventListener("DOMContentLoaded", function() {
+      
+    searchCountries()
+
+   });

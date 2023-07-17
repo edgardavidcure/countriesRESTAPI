@@ -1,4 +1,4 @@
-import { loadHeaderFooter, getParam } from "./utils.mjs";
+import { loadHeaderFooter, getParam, searchCountries } from "./utils.mjs";
 import { getCountryByCode } from "./externalServices.mjs";
 
 loadHeaderFooter();
@@ -128,4 +128,10 @@ async function createCountryBorders(){
     }
 }
 
-renderCountryPage()
+renderCountryPage();
+
+document.addEventListener("DOMContentLoaded", function() {
+      
+    searchCountries()
+
+   });

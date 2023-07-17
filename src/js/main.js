@@ -169,8 +169,17 @@ async function loadFilterOptions(typeOfJson) {
     const scrollToTopBtn = document.querySelector(".floating-button");
     if (entries[0].isIntersecting) {
       scrollToTopBtn.classList.add("hide");
+      setTimeout(() => {
+        scrollToTopBtn.style.display = "none";
+        
+      }, 100);
     } else {
-      scrollToTopBtn.classList.remove("hide");
+      scrollToTopBtn.style.display = "flex";
+      setTimeout(() => {
+        scrollToTopBtn.classList.remove("hide");
+        
+      }, 200);
+      
     }
   }
 

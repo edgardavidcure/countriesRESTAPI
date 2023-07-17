@@ -1,4 +1,4 @@
-import { loadHeaderFooter, getParam } from "./utils.mjs";
+import { loadHeaderFooter, getParam, formatNumber } from "./utils.mjs";
 import { getCountryByCode } from "./externalServices.mjs";
 
 loadHeaderFooter();
@@ -95,7 +95,7 @@ function countryPageTemplate(item, nativeName, currencies, languages, domains){
                 <h1>${item.name.common}</h1>
                 <div class="countryDetails" id="">
                     <p id="nativeName"><span class="bold" id="">Native Name:</span> ${nativeName}</p>
-                    <p><span class="bold" id="">Population:</span> ${item.population}</p>
+                    <p><span class="bold" id="">Population:</span> ${formatNumber(item.population)}</p>
                     <p><span class="bold" id="">Region:</span> ${item.region}</p>
                     <p><span class="bold" id="">Sub Region:</span> ${item.subregion || "N/A"}</p>
                     <p><span class="bold" id="">Capital:</span> ${item.capital || "N/A"}</p>

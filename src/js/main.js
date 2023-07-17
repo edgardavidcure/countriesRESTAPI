@@ -1,4 +1,4 @@
-import { getLocalStorage, loadHeaderFooter, manageTravelList, searchCountries} from "./utils.mjs";
+import { getLocalStorage, loadHeaderFooter, manageTravelList, formatNumber ,searchCountries} from "./utils.mjs";
 import { getCountriesData, getCountryByFilter, getCountryByName } from "./externalServices.mjs";
 loadHeaderFooter()
 
@@ -22,6 +22,7 @@ export async function renderContryCard(filteredData){
     updateIconColor()
   }
 
+
 function countryCardTemplate(item, index){
     return `<div class="card ${index}">
             <a href="../countryPages/index.html?countryCode=${item.cca3}" class="countryLink" id="">
@@ -29,7 +30,7 @@ function countryCardTemplate(item, index){
                 <div class="countryInfo" id="">
                     <h2 id="">${item.name.common}</h2>
                     <div class="countryDetails" id="">
-                        <p><span class="bold" id="">Population:</span> ${item.population}</p>
+                        <p><span class="bold" id="">Population:</span> ${formatNumber(item.population)}</p>
                         <p><span class="bold" id="">Region:</span> ${item.region}</p>
                         <p><span class="bold" id="">Capital:</span> ${item.capital || "N/A"}</p>
                         <i class="fa-regular fa-heart" style="color: #ff2600;text-align: end;

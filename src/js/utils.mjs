@@ -197,9 +197,9 @@ export function manageTravelList(country) {
   setLocalStorage("t-list", travelList);
 }
 
-
-
-
+export function formatNumber(number) {
+  return new Intl.NumberFormat().format(number);
+}
   
 
 

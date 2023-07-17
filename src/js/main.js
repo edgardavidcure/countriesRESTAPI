@@ -3,6 +3,8 @@ import { getCountriesData, getCountryByFilter, getCountryByName } from "./extern
 loadHeaderFooter()
 
 const removeButton = document.querySelector(".removeFilter") 
+const header = document.querySelector("header");
+const scrollToTopBtn = document.querySelector(".floating-button")
 
 export async function renderContryCard(filteredData){
     let countriesData = []
@@ -155,6 +157,37 @@ async function loadFilterOptions(typeOfJson) {
   }
 
   renderContryCard();
+
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  scrollToTopBtn.addEventListener("click", scrollToTop);
+
+  function handleIntersection(entries) {
+    if (entries[0].isIntersecting) {
+      scrollToTopBtn.classList.add("hide");
+      setTimeout(() => {
+        scrollToTopBtn.style.display = "none";
+        
+      }, 100);
+    } else {
+      scrollToTopBtn.style.display = "flex";
+      setTimeout(() => {
+        scrollToTopBtn.classList.remove("hide");
+        
+      }, 200);
+      
+    }
+  }
+
+  const observer = new IntersectionObserver(handleIntersection, {
+    root: null, 
+    threshold: 0,
+  });
+
+  observer.observe(header);
  
   document.addEventListener("DOMContentLoaded", function() {
       

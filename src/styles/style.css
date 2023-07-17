@@ -503,4 +503,32 @@ footer{
   #goToTravelList:hover{
     background-color: var(--elements-background);
   }
-  
+  .floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: #555;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    border: unset;
+    cursor: pointer;
+    transition: opacity 0.3s ease, background-color 0.3s ease, scale 0.3s ease;
+  }
+  .floating-button span{
+    color: #fff;
+
+  }
+  .floating-button.hide {
+    opacity: 0;
+  }
+
+  .floating-button:hover{
+    background-color: #888;
+    scale: 1.1;
+
+  }

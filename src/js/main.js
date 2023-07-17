@@ -1,4 +1,4 @@
-import { getLocalStorage, loadHeaderFooter, manageTravelList, formatNumber} from "./utils.mjs";
+import { getLocalStorage, loadHeaderFooter, manageTravelList, formatNumber ,searchCountries} from "./utils.mjs";
 import { getCountriesData, getCountryByFilter, getCountryByName } from "./externalServices.mjs";
 loadHeaderFooter()
 
@@ -167,11 +167,19 @@ async function loadFilterOptions(typeOfJson) {
   scrollToTopBtn.addEventListener("click", scrollToTop);
 
   function handleIntersection(entries) {
-    const scrollToTopBtn = document.querySelector(".floating-button");
     if (entries[0].isIntersecting) {
       scrollToTopBtn.classList.add("hide");
+      setTimeout(() => {
+        scrollToTopBtn.style.display = "none";
+        
+      }, 100);
     } else {
-      scrollToTopBtn.classList.remove("hide");
+      scrollToTopBtn.style.display = "flex";
+      setTimeout(() => {
+        scrollToTopBtn.classList.remove("hide");
+        
+      }, 200);
+      
     }
   }
 
@@ -181,3 +189,9 @@ async function loadFilterOptions(typeOfJson) {
   });
 
   observer.observe(header);
+ 
+  document.addEventListener("DOMContentLoaded", function() {
+      
+    searchCountries()
+
+   });

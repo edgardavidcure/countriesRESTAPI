@@ -7,11 +7,7 @@ export function loadHeaderFooter() {
     const footerElement = document.getElementById("main-footer");
     renderWithTemplate(headerTemplateFn, headerElement, checkViewPreference);
     renderWithTemplate(footerTemplateFn, footerElement);
-    document.addEventListener("DOMContentLoaded", function() {
-      
-     searchCountries()
-
-    });
+    
 }
 export function qs(selector, parent = document) {
     return parent.querySelector(selector);

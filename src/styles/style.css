@@ -517,7 +517,7 @@ footer{
     display: flex;
     border: unset;
     cursor: pointer;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, background-color 0.3s ease, scale 0.3s ease;
   }
   .floating-button span{
     color: #fff;
@@ -525,4 +525,10 @@ footer{
   }
   .floating-button.hide {
     opacity: 0;
+  }
+
+  .floating-button:hover{
+    background-color: #888;
+    scale: 1.1;
+
   }

@@ -12,8 +12,10 @@ export async function renderContryCard(filteredData){
     }else{
         countriesData = await getCountriesData();
     }
+    const sortedList = countriesData.sort((a, b) =>
+    a.name.common.localeCompare(b.name.common));
     const mainElement = document.querySelector("#countriesContainer")
-    const htmlElements = countriesData.map((item, index) => countryCardTemplate(item, index))
+    const htmlElements = sortedList.map((item, index) => countryCardTemplate(item, index))
     mainElement.innerHTML = htmlElements.join("")
     updateIconColor()
   }

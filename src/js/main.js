@@ -1,4 +1,4 @@
-import { getLocalStorage, loadHeaderFooter, manageTravelList} from "./utils.mjs";
+import { getLocalStorage, loadHeaderFooter, manageTravelList, searchCountries} from "./utils.mjs";
 import { getCountriesData, getCountryByFilter, getCountryByName } from "./externalServices.mjs";
 loadHeaderFooter()
 
@@ -154,3 +154,8 @@ async function loadFilterOptions(typeOfJson) {
 
   renderContryCard();
  
+  document.addEventListener("DOMContentLoaded", function() {
+      
+    searchCountries()
+
+   });

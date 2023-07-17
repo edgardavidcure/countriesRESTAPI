@@ -3,6 +3,7 @@ import {
   getLocalStorage,
   loadHeaderFooter,
   manageTravelList,
+  searchCountries
 } from "./utils.mjs";
 
 const travelItems = getLocalStorage("t-list");
@@ -84,3 +85,8 @@ function updateIconColor() {
 }
 
 renderContryCard(travelItems);
+document.addEventListener("DOMContentLoaded", function() {
+      
+  searchCountries()
+
+ });

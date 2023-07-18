@@ -159,6 +159,8 @@ export async function searchCountries(){
     function searchResultProductTemplate(product) {
       return `<li class="search__result"><a href="/countryPages/index.html?countryCode=${product.cca3}">${product.name.common}</a></li>`;
     }
+
+
     
     searchInputElement.addEventListener("input", (e) => {
       const filteredList = countryList.filter(

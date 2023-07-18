@@ -12,13 +12,17 @@ loadHeaderFooter();
 
 function renderContryCard(countries) {
   const countriesData = countries || [];
-
   const mainElement = document.querySelector("#countriesContainer");
-  const htmlElements = countriesData.map((item, index) =>
-    countryCardTemplate(item, index)
-  );
-  mainElement.innerHTML = htmlElements.join("");
-  updateIconColor();
+
+  if(countries.length !== 0){
+    const htmlElements = countriesData.map((item, index) =>
+      countryCardTemplate(item, index)
+    );
+    mainElement.innerHTML = htmlElements.join("");
+    updateIconColor();
+  }else{
+    mainElement.innerHTML = "<h4>No items to show &#128547;</h4>";
+  }
 }
 
 function countryCardTemplate(item, index) {

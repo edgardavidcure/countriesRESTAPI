@@ -1,4 +1,4 @@
-import { getLocalStorage, loadHeaderFooter, manageTravelList, formatNumber ,searchCountries} from "./utils.mjs";
+import { getLocalStorage, loadHeaderFooter, manageTravelList, formatNumber, searchCountries} from "./utils.mjs";
 import { getCountriesData, getCountryByFilter, getCountryByName } from "./externalServices.mjs";
 loadHeaderFooter()
 

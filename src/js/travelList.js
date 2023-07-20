@@ -15,14 +15,12 @@ function renderContryCard(countries) {
   const mainElement = document.querySelector("#countriesContainer");
 
   if(countries && countries.length > 0){
-    console.log(countries)
     const htmlElements = countriesData.map((item, index) =>
       countryCardTemplate(item, index)
     );
     mainElement.innerHTML = htmlElements.join("");
     updateIconColor();
   } else{
-    console.log("hello")
     mainElement.innerHTML = "<h4>No items to show &#128547;</h4>";
   }
 }

@@ -8,7 +8,6 @@ const scrollToTopBtn = document.querySelector(".floating-button")
 
 export async function renderContryCard(filteredData){
     let countriesData = []
-    console.log(filteredData)
     if(filteredData){
         countriesData = filteredData;
     }else{

@@ -130,8 +130,8 @@ async function createCountryBorders(){
 
 renderCountryPage();
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
       
-    searchCountries()
+    await searchCountries()
 
    });

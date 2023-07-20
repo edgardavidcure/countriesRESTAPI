@@ -190,8 +190,8 @@ async function loadFilterOptions(typeOfJson) {
 
   observer.observe(header);
  
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", async function() {
       
-    searchCountries()
+    await searchCountries()
 
    });
